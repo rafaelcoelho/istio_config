@@ -1,0 +1,16 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  #namespace: istio-system
+  name: additional-metrics
+spec:
+  profile: default
+  meshConfig:
+    defaultConfig:
+      proxyStatsMatcher:
+        inclusionRegexps:
+          - ".*circuit_breakers.*"
+          - ".*upstream_cx.*"
+        inclusionPrefixes:
+          - "upstream_rq_retry"
+          - "upstream_cx"

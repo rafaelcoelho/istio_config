@@ -1,0 +1,418 @@
+Name:         installed-state
+Namespace:    istio-system
+Labels:       <none>
+Annotations:  install.istio.io/ignoreReconcile: true
+API Version:  install.istio.io/v1alpha1
+Kind:         IstioOperator
+Metadata:
+  Creation Timestamp:  2022-10-22T22:55:34Z
+  Generation:          1
+  Managed Fields:
+    API Version:  install.istio.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:install.istio.io/ignoreReconcile:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+      f:spec:
+        .:
+        f:components:
+          .:
+          f:base:
+            .:
+            f:enabled:
+          f:cni:
+            .:
+            f:enabled:
+          f:egressGateways:
+          f:ingressGateways:
+          f:istiodRemote:
+            .:
+            f:enabled:
+          f:pilot:
+            .:
+            f:enabled:
+            f:k8s:
+              .:
+              f:env:
+              f:resources:
+                .:
+                f:requests:
+                  .:
+                  f:cpu:
+                  f:memory:
+        f:hub:
+        f:meshConfig:
+          .:
+          f:accessLogFile:
+          f:defaultConfig:
+            .:
+            f:proxyMetadata:
+          f:enablePrometheusMerge:
+          f:extensionProviders:
+        f:profile:
+        f:tag:
+        f:values:
+          .:
+          f:base:
+            .:
+            f:enableCRDTemplates:
+            f:validationURL:
+          f:defaultRevision:
+          f:gateways:
+            .:
+            f:istio-egressgateway:
+              .:
+              f:autoscaleEnabled:
+              f:env:
+              f:name:
+              f:secretVolumes:
+              f:type:
+            f:istio-ingressgateway:
+              .:
+              f:autoscaleEnabled:
+              f:env:
+              f:name:
+              f:secretVolumes:
+              f:type:
+          f:global:
+            .:
+            f:configValidation:
+            f:defaultNodeSelector:
+            f:defaultPodDisruptionBudget:
+              .:
+              f:enabled:
+            f:defaultResources:
+              .:
+              f:requests:
+                .:
+                f:cpu:
+            f:imagePullPolicy:
+            f:imagePullSecrets:
+            f:istioNamespace:
+            f:istiod:
+              .:
+              f:enableAnalysis:
+            f:jwtPolicy:
+            f:logAsJson:
+            f:logging:
+              .:
+              f:level:
+            f:meshNetworks:
+            f:mountMtlsCerts:
+            f:multiCluster:
+              .:
+              f:clusterName:
+              f:enabled:
+            f:network:
+            f:omitSidecarInjectorConfigMap:
+            f:oneNamespace:
+            f:operatorManageWebhooks:
+            f:pilotCertProvider:
+            f:priorityClassName:
+            f:proxy:
+              .:
+              f:autoInject:
+              f:clusterDomain:
+              f:componentLogLevel:
+              f:enableCoreDump:
+              f:excludeIPRanges:
+              f:excludeInboundPorts:
+              f:excludeOutboundPorts:
+              f:image:
+              f:includeIPRanges:
+              f:logLevel:
+              f:privileged:
+              f:readinessFailureThreshold:
+              f:readinessInitialDelaySeconds:
+              f:readinessPeriodSeconds:
+              f:resources:
+                .:
+                f:limits:
+                  .:
+                  f:cpu:
+                  f:memory:
+                f:requests:
+                  .:
+                  f:cpu:
+                  f:memory:
+              f:statusPort:
+              f:tracer:
+            f:proxy_init:
+              .:
+              f:image:
+              f:resources:
+                .:
+                f:limits:
+                  .:
+                  f:cpu:
+                  f:memory:
+                f:requests:
+                  .:
+                  f:cpu:
+                  f:memory:
+            f:sds:
+              .:
+              f:token:
+                .:
+                f:aud:
+            f:sts:
+              .:
+              f:servicePort:
+            f:tracer:
+              .:
+              f:datadog:
+              f:lightstep:
+              f:stackdriver:
+              f:zipkin:
+            f:useMCP:
+          f:istiodRemote:
+            .:
+            f:injectionURL:
+          f:pilot:
+            .:
+            f:autoscaleEnabled:
+            f:autoscaleMax:
+            f:autoscaleMin:
+            f:configMap:
+            f:cpu:
+              .:
+              f:targetAverageUtilization:
+            f:deploymentLabels:
+            f:enableProtocolSniffingForInbound:
+            f:enableProtocolSniffingForOutbound:
+            f:env:
+            f:image:
+            f:keepaliveMaxServerConnectionAge:
+            f:nodeSelector:
+            f:podLabels:
+            f:replicaCount:
+            f:traceSampling:
+          f:telemetry:
+            .:
+            f:enabled:
+            f:v2:
+              .:
+              f:enabled:
+              f:metadataExchange:
+                .:
+                f:wasmEnabled:
+              f:prometheus:
+                .:
+                f:enabled:
+                f:wasmEnabled:
+              f:stackdriver:
+                .:
+                f:configOverride:
+                f:enabled:
+                f:logging:
+                f:monitoring:
+                f:topology:
+    Manager:         istioctl
+    Operation:       Update
+    Time:            2022-10-22T22:55:34Z
+  Resource Version:  1244
+  UID:               4e98e459-d3ce-4575-8299-8d04607993b9
+Spec:
+  Components:
+    Base:
+      Enabled:  true
+    Cni:
+      Enabled:  false
+    Egress Gateways:
+      Enabled:  true
+      k8s:
+        Resources:
+          Requests:
+            Cpu:     10m
+            Memory:  40Mi
+      Name:          istio-egressgateway
+    Ingress Gateways:
+      Enabled:  true
+      k8s:
+        Resources:
+          Requests:
+            Cpu:     10m
+            Memory:  40Mi
+        Service:
+          Ports:
+            Name:         status-port
+            Port:         15021
+            Target Port:  15021
+            Name:         http2
+            Port:         80
+            Target Port:  8080
+            Name:         https
+            Port:         443
+            Target Port:  8443
+            Name:         tcp
+            Port:         31400
+            Target Port:  31400
+            Name:         tls
+            Port:         15443
+            Target Port:  15443
+      Name:               istio-ingressgateway
+    Istiod Remote:
+      Enabled:  false
+    Pilot:
+      Enabled:  true
+      k8s:
+        Env:
+          Name:   PILOT_TRACE_SAMPLING
+          Value:  100
+        Resources:
+          Requests:
+            Cpu:     10m
+            Memory:  100Mi
+  Hub:               docker.io/istio
+  Mesh Config:
+    Access Log File:  /dev/stdout
+    Default Config:
+      Proxy Metadata:
+    Enable Prometheus Merge:  true
+    Extension Providers:
+      Envoy Otel Als:
+        Port:     4317
+        Service:  opentelemetry-collector.istio-system.svc.cluster.local
+      Name:       otel
+  Profile:        demo
+  Tag:            1.15.2
+  Values:
+    Base:
+      Enable CRD Templates:  false
+      Validation URL:        
+    Default Revision:        
+    Gateways:
+      Istio - Egressgateway:
+        Autoscale Enabled:  false
+        Env:
+        Name:  istio-egressgateway
+        Secret Volumes:
+          Mount Path:   /etc/istio/egressgateway-certs
+          Name:         egressgateway-certs
+          Secret Name:  istio-egressgateway-certs
+          Mount Path:   /etc/istio/egressgateway-ca-certs
+          Name:         egressgateway-ca-certs
+          Secret Name:  istio-egressgateway-ca-certs
+        Type:           ClusterIP
+      Istio - Ingressgateway:
+        Autoscale Enabled:  false
+        Env:
+        Name:  istio-ingressgateway
+        Secret Volumes:
+          Mount Path:   /etc/istio/ingressgateway-certs
+          Name:         ingressgateway-certs
+          Secret Name:  istio-ingressgateway-certs
+          Mount Path:   /etc/istio/ingressgateway-ca-certs
+          Name:         ingressgateway-ca-certs
+          Secret Name:  istio-ingressgateway-ca-certs
+        Type:           LoadBalancer
+    Global:
+      Config Validation:  true
+      Default Node Selector:
+      Default Pod Disruption Budget:
+        Enabled:  true
+      Default Resources:
+        Requests:
+          Cpu:            10m
+      Image Pull Policy:  
+      Image Pull Secrets:
+      Istio Namespace:  istio-system
+      Istiod:
+        Enable Analysis:  false
+      Jwt Policy:         third-party-jwt
+      Log As Json:        false
+      Logging:
+        Level:  default:info
+      Mesh Networks:
+      Mount Mtls Certs:  false
+      Multi Cluster:
+        Cluster Name:                    
+        Enabled:                         false
+      Network:                           
+      Omit Sidecar Injector Config Map:  false
+      One Namespace:                     false
+      Operator Manage Webhooks:          false
+      Pilot Cert Provider:               istiod
+      Priority Class Name:               
+      Proxy:
+        Auto Inject:                      enabled
+        Cluster Domain:                   cluster.local
+        Component Log Level:              misc:error
+        Enable Core Dump:                 false
+        Exclude IP Ranges:                
+        Exclude Inbound Ports:            
+        Exclude Outbound Ports:           
+        Image:                            proxyv2
+        Include IP Ranges:                *
+        Log Level:                        warning
+        Privileged:                       false
+        Readiness Failure Threshold:      30
+        Readiness Initial Delay Seconds:  1
+        Readiness Period Seconds:         2
+        Resources:
+          Limits:
+            Cpu:     2000m
+            Memory:  1024Mi
+          Requests:
+            Cpu:      10m
+            Memory:   40Mi
+        Status Port:  15020
+        Tracer:       zipkin
+      proxy_init:
+        Image:  proxyv2
+        Resources:
+          Limits:
+            Cpu:     2000m
+            Memory:  1024Mi
+          Requests:
+            Cpu:     10m
+            Memory:  10Mi
+      Sds:
+        Token:
+          Aud:  istio-ca
+      Sts:
+        Service Port:  0
+      Tracer:
+        Datadog:
+        Lightstep:
+        Stackdriver:
+        Zipkin:
+      Use MCP:  false
+    Istiod Remote:
+      Injection URL:  
+    Pilot:
+      Autoscale Enabled:  false
+      Autoscale Max:      5
+      Autoscale Min:      1
+      Config Map:         true
+      Cpu:
+        Target Average Utilization:           80
+      Deployment Labels:                      <nil>
+      Enable Protocol Sniffing For Inbound:   true
+      Enable Protocol Sniffing For Outbound:  true
+      Env:
+      Image:                                pilot
+      Keepalive Max Server Connection Age:  30m
+      Node Selector:
+      Pod Labels:
+      Replica Count:   1
+      Trace Sampling:  1
+    Telemetry:
+      Enabled:  true
+      v2:
+        Enabled:  true
+        Metadata Exchange:
+          Wasm Enabled:  false
+        Prometheus:
+          Enabled:       true
+          Wasm Enabled:  false
+        Stackdriver:
+          Config Override:
+          Enabled:     false
+          Logging:     false
+          Monitoring:  false
+          Topology:    false
+Events:                <none>

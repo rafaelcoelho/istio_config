@@ -1,0 +1,7 @@
+kb exec deployments/pyclient-service-v1 -c istio-proxy -- pilot-agent request GET stats | ag circuit
+kb scale deployment/pyclient-service-v1 --replicas 0
+istioctl proxy-config  bootstrap pyserver-service-v1-5ddf56d6cb-gwm7q
+kb get istiooperators.install.istio.io -A
+istioctl d kiali prometheus
+kubectl config set-context kind-istio-latest
+- .*circuit_breakers.*

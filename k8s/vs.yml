@@ -1,0 +1,45 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pyserver-service
+spec:
+  hosts:
+  - pyserver-service-v1
+  http:
+  - route:
+    - destination:
+        host: pyserver-service
+        subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pyclient-service
+spec:
+  hosts:
+  - pyclient-service-v1
+  http:
+  - route:
+    - destination:
+        host: pyclient-service
+        subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: pyserver-service
+spec:
+  host: pyserver-service
+  trafficPolicy:
+    loadBalancer:
+      #simple: LEAST_REQUEST
+      simple: ROUND_ROBIN
+    connectionPool:
+      tcp:
+        maxConnections: 5
+      http:
+        #http2MaxRequests: 2
+        #maxRequestsPerConnection: 2
+        http1MaxPendingRequests: 1
+        maxRetries: 2
+---

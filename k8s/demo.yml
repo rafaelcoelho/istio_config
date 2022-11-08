@@ -1,0 +1,114 @@
+##################################################################################################
+# pyserver-service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyserver-service
+  labels:
+    app: pyserver-service
+    service: pyserver-service
+spec:
+  ports:
+  - port: 5000
+    name: http
+  selector:
+    app: pyserver-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pyserver-service
+  labels:
+    account: pyserver-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyserver-service-v1
+  labels:
+    app: pyserver-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pyserver-service
+      version: v1
+  template:
+    metadata:
+      annotations:
+        proxy.istio.io/config: |-
+          proxyStatsMatcher:
+            inclusionRegexps:
+            - ".*circuit_breakers.*"
+            inclusionPrefixes:
+            - "upstream_cx"
+            - "upstream_rq_"
+      labels:
+        app: pyserver-service
+        version: v1
+    spec:
+      serviceAccountName: pyserver-service
+      containers:
+      - name: pyserver-service
+        image: rscoelho/pyserver:0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+---
+##################################################################################################
+# pyclient service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyclient-service
+  labels:
+    app: pyclient-service
+    service: pyclient-service
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: pyclient-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pyclient-service
+  labels:
+    account: pyclient-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyclient-service-v1
+  labels:
+    app: pyclient-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pyclient-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: pyclient-service
+        version: v1
+    spec:
+      serviceAccountName: pyclient-service
+      containers:
+      - name: pyclient-service
+        image: rscoelho/pyclient:0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+        resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
+---
